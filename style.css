@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Lemon Milk', cursive;
+  background: black;
+  color: white;
+  text-align: center;
+}
+.glow-name {
+  font-size: 3rem;
+  animation: glow 2s infinite alternate;
+  color: skyblue;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 5px red; }
+  to { text-shadow: 0 0 20px skyblue, 0 0 30px red; }
+}
+.open-heart {
+  background: red;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
