@@ -51,12 +51,20 @@
     .btn-love:hover {
       background-color: #ff4d4d;
     }
+
+    #love-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      max-width: 90%;
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body>
 
   <!-- 🌟 IMAGE DISPLAYED DURING COUNTDOWN -->
-<img src="partner-title.png" alt="My Partner Joshna" class="header-image" />
+  <img src="partner-title.png" alt="My Partner Joshna" class="title-image" />
 
   <!-- ⏳ COUNTDOWN TIMER -->
   <div id="countdown">Loading...</div>
@@ -67,35 +75,8 @@
   <!-- ❤️ BUTTON -->
   <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
 
-  <script>
-    // Set the birthday date
-    const birthday = new Date("September 5, 2025 00:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const gap = birthday - now;
-
-      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((gap % (1000 * 60)) / 1000);
-
-      if (gap > 0) {
-        document.getElementById("countdown").innerHTML =
-          `🤍🥺 ${days}d ${hours}h ${minutes}m ${seconds}s left 😚💋`;
-      } else {
-        document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Joshna 🎉";
-        document.getElementById("waiting-text").style.display = "none";
-        document.querySelector(".btn-love").innerHTML = "💌 ENTER TO UNLOCK MY LOVE 💌";
-      }
-    }
-
-    setInterval(updateCountdown, 1000);
-  </script>
-</body>
-</html>
-<!-- 💖 Hidden Love Message -->
-  <div id="love-message" style="display: none; margin-top: 20px; font-size: 1.1rem;">
+  <!-- 💖 HIDDEN LOVE MESSAGE -->
+  <div id="love-message">
     <p>1. புரிந்துக்கொள்ளும் வரை எதையும் ரசிக்கவில்லை, புரிந்துக்கொண்டபின் உன்னை தவிர எதையும் ரசிக்க முடியவில்லை...</p>
     <p>2. உன்னை வர்ணிக்கும் போதே கவிதையும் கொஞ்சம் வெட்கப்படுகிறது...</p>
   </div>
@@ -125,4 +106,6 @@
 
     setInterval(updateCountdown, 1000);
   </script>
+
 </body>
+</html>
