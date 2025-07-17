@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="ta">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Partner Birthday</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <div class="main-container">
-      <img src="partner-title.png" alt="My Partner Joshna" class="header-image" />
-      <div class="countdown" id="countdown"></div>
-      <div class="quote">காத்திருக்கிறேன்...!!</div>
-      <button class="open-heart">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Partner Birthday</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="main-container">
+    <div class="countdown" id="countdown"></div>
+    <div class="quote">காத்திருக்கிறேன்...!!</div>
+    <button class="open-heart" onclick="handleClick()">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+
+    <div id="password-section" style="display: none;">
+      <input type="password" id="password-input" placeholder="Enter password..." />
+      <button onclick="checkPassword()">Unlock</button>
+      <div id="wrong-password" class="error-text"></div>
     </div>
-  </body>
+
+    <div id="birthday-message" style="display: none;">
+      <img src="partner-title.png" alt="Joshna" class="header-image"/>
+      <div class="love-message">
+        <p>From the moment I met you, my world changed.<br>
+        You are my love, my life, my everything.<br>
+        Happy Birthday, my Partner 💌</p>
+        <p>உன்னை பார்த்த அந்த நிமிஷம் முதல் என் உலகமே மாறிவிட்டது…<br>
+        நீ என் காதல்... என் உயிர்... என் நிம்மதி.<br>
+        பிறந்த நாள் வாழ்த்துகள் என் பார்ட்னர் 💖</p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
