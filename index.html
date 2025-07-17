@@ -1,55 +1,128 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joshna Birthday Countdown</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Partner Birthday Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      font-family: 'Lemon', cursive;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    img.title-image {
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    #countdown {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #waiting-text {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .btn-love {
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: none;
+      box-shadow: 0 0 15px skyblue;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-love:hover {
+      background-color: #ff4d4d;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <img src="images/joshna-name.png" alt="Joshna Name" class="name-image" />
 
-    <!-- Countdown Timer -->
-    <h1 class="countdown-text">
-      🤍🥹 <span id="countdown"></span> left 😚💋
-    </h1>
+  <!-- 🌟 IMAGE DISPLAYED DURING COUNTDOWN -->
+  <img src="partner-title.png" alt="Joshna Title" class="title-image" />
 
-    <!-- Tamil quote -->
-    <p class="tamil-quote">காத்திருக்கிறேன்...!!</p>
+  <!-- ⏳ COUNTDOWN TIMER -->
+  <div id="countdown">Loading...</div>
 
-    <!-- Button -->
-    <button class="heart-button" onclick="openHeart()">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
-  </div>
+  <!-- 💌 WAITING TEXT -->
+  <div id="waiting-text">காத்திருக்கிறேன்...!!</div>
 
-  <!-- Countdown Script -->
+  <!-- ❤️ BUTTON -->
+  <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+
   <script>
-    const countdownEl = document.getElementById("countdown");
-    const birthday = new Date("2025-09-05T00:00:00");
+    // Set the birthday date
+    const birthday = new Date("September 5, 2025 00:00:00").getTime();
 
     function updateCountdown() {
-      const now = new Date();
-      const diff = birthday - now;
+      const now = new Date().getTime();
+      const gap = birthday - now;
 
-      if (diff <= 0) {
-        window.location.href = "password.html";
+      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((gap % (1000 * 60)) / 1000);
+
+      if (gap > 0) {
+        document.getElementById("countdown").innerHTML =
+          `🤍🥺 ${days}d ${hours}h ${minutes}m ${seconds}s left 😚💋`;
       } else {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / 1000 / 60) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Joshna 🎉";
+        document.getElementById("waiting-text").style.display = "none";
+        document.querySelector(".btn-love").innerHTML = "💌 ENTER TO UNLOCK MY LOVE 💌";
       }
     }
 
-    updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    function openHeart() {
-      alert("💌 Wait till September 5th, partner 💌");
-    }
   </script>
 </body>
 </html>
+<!-- 💖 Hidden Love Message -->
+  <div id="love-message" style="display: none; margin-top: 20px; font-size: 1.1rem;">
+    <p>1. புரிந்துக்கொள்ளும் வரை எதையும் ரசிக்கவில்லை, புரிந்துக்கொண்டபின் உன்னை தவிர எதையும் ரசிக்க முடியவில்லை...</p>
+    <p>2. உன்னை வர்ணிக்கும் போதே கவிதையும் கொஞ்சம் வெட்கப்படுகிறது...</p>
+  </div>
+
+  <script>
+    const birthday = new Date("September 5, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const gap = birthday - now;
+
+      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((gap % (1000 * 60)) / 1000);
+
+      if (gap > 0) {
+        document.getElementById("countdown").innerHTML =
+          `🤍🥺 ${days}d ${hours}h ${minutes}m ${seconds}s left 😚💋`;
+      } else {
+        document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Joshna 🎉";
+        document.getElementById("waiting-text").style.display = "none";
+        document.querySelector(".btn-love").style.display = "none";
+        document.getElementById("love-message").style.display = "block";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
