@@ -51,3 +51,20 @@ body {
 .open-heart:hover {
   transform: scale(1.05);
 }
+.open-heart {
+  text-transform: uppercase;
+  background-color: red;
+  color: white;
+  font-family: 'Lemon Milk', sans-serif;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 0 20px skyblue;
+}
+.handwriting {
+  font-family: 'YourSignatureFont', cursive;
+  color: white;
+  font-size: 32px;
+  text-transform: capitalize; /* Only first letter capital */
+}
