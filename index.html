@@ -2,34 +2,55 @@
 <html lang="ta">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Partner Birthday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joshna Birthday Countdown</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="main-container">
-    <div class="countdown" id="countdown"></div>
-    <div class="quote">காத்திருக்கிறேன்...!!</div>
-    <button class="open-heart" onclick="handleClick()">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+  <div class="container">
+    <!-- Image for Joshna's name -->
+    <img src="assets/joshna-name.png" alt="Joshna Name" class="title-image" />
 
-    <div id="password-section" style="display: none;">
-      <input type="password" id="password-input" placeholder="Enter password..." />
-      <button onclick="checkPassword()">Unlock</button>
-      <div id="wrong-password" class="error-text"></div>
-    </div>
+    <!-- Countdown Timer -->
+    <h1 class="countdown-text">
+      🤍🥹 <span id="countdown"></span> left 😚💋
+    </h1>
 
-    <div id="birthday-message" style="display: none;">
-      <img src="partner-title.png" alt="Joshna" class="header-image"/>
-      <div class="love-message">
-        <p>From the moment I met you, my world changed.<br>
-        You are my love, my life, my everything.<br>
-        Happy Birthday, my Partner 💌</p>
-        <p>உன்னை பார்த்த அந்த நிமிஷம் முதல் என் உலகமே மாறிவிட்டது…<br>
-        நீ என் காதல்... என் உயிர்... என் நிம்மதி.<br>
-        பிறந்த நாள் வாழ்த்துகள் என் பார்ட்னர் 💖</p>
-      </div>
-    </div>
+    <!-- Tamil quote -->
+    <p class="tamil-quote">காத்திருக்கிறேன்...!!</p>
+
+    <!-- Button -->
+    <button class="heart-button" onclick="openHeart()">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
+
+  <!-- Countdown Script -->
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const birthday = new Date("2025-09-05T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = birthday - now;
+
+      if (diff <= 0) {
+        window.location.href = "password.html";
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function openHeart() {
+      alert("💌 Wait till September 5th, partner 💌");
+    }
+  </script>
 </body>
 </html>
