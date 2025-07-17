@@ -59,3 +59,11 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+.signature-font {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  color: #fff;
+  margin-top: 20px;
+  line-height: 1.8;
+  animation: fadeIn 2s ease-in-out;
+}
