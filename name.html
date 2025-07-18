@@ -1,1 +1,44 @@
-Visitor name input page with Google Form redirection
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Your Name</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Lemon', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>💌 Hey! What’s your name?</h2>
+  <input type="text" id="username" placeholder="Enter your name" required>
+  <button onclick="submitName()">Continue</button>
+
+  <script>
+    function submitName() {
+      const name = document.getElementById('username').value;
+      if (!name) return alert('Please enter your name!');
+
+      const url = `https://docs.google.com/forms/d/e/1FAIpQLSeOBoR7qSFW9JdvsT0TEksepd0h5HXN9oImd0XFiBTqfP1ATA/formResponse?entry.66588096=${encodeURIComponent(name)}`;
+      fetch(url, { method: "POST", mode: "no-cors" });
+
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
