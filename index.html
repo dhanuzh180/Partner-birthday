@@ -1,1 +1,79 @@
-Countdown page with 2D cartoon boy background and Tamil quote
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Partner Birthday Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: black;
+      color: white;
+      font-family: 'Lemon', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+    video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .container {
+      position: relative;
+      top: 20vh;
+    }
+    img {
+      max-width: 80%;
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+    #waiting-text {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .btn-love {
+      background: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      box-shadow: 0 0 15px skyblue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <video src="waiting-bg.mp4" autoplay loop muted></video>
+  <div class="container">
+    <img src="partner-title.png" alt="Joshna" />
+    <div id="countdown">Loading...</div>
+    <div id="waiting-text">காத்திருக்கிறேன்...!!</div>
+    <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+  </div>
+
+  <script>
+    const birthday = new Date("September 5, 2025 00:00:00").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const gap = birthday - now;
+      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText = gap > 0
+        ? `🤍🥺 ${d}d ${h}h ${m}m ${s}s left 😚💋`
+        : "🎉 Happy Birthday Joshna 🎉";
+    }
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
