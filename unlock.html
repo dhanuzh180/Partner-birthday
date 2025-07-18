@@ -1,1 +1,49 @@
-Password page for access after September 5
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unlock Love</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Lemon', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    input, button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>💖 It's Time! Enter the Secret Code 💖</h2>
+  <input type="password" id="pass" placeholder="Enter password" />
+  <button onclick="unlock()">Unlock</button>
+
+  <script>
+    const birthday = new Date("September 5, 2025 00:00:00").getTime();
+    if (new Date().getTime() < birthday) {
+      alert("🔒 Unlocks only after 12:00 AM on September 5!");
+      window.location.href = "index.html";
+    }
+
+    function unlock() {
+      const pass = document.getElementById('pass').value.trim();
+      if (pass === "I lv u partner") {
+        window.location.href = "final.html";
+      } else {
+        alert("❌ Wrong password!");
+      }
+    }
+  </script>
+</body>
+</html>
