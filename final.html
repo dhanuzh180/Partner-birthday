@@ -1,132 +1,296 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I Promise You Partner</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Our 100 Promises</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('bg.jpg') no-repeat center center fixed;
+      background: url('love-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Montserrat', sans-serif;
       color: white;
-      display: flex;
+      overflow: hidden;
+    }
+
+    #overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    #entry {
+      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       text-align: center;
+      height: 100vh;
     }
-    .hidden { display: none; }
-    #passwordPage input {
-      padding: 10px;
-      font-size: 16px;
+
+    #entry img {
+      width: 220px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
-    #passwordPage button {
-      padding: 10px 20px;
-      font-weight: bold;
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    #startBtn {
+      background-color: #ff4d6d;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
       cursor: pointer;
+      box-shadow: 0 0 10px #ff4d6d;
+      transition: 0.3s;
     }
-    .promise-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      max-width: 90%;
-      margin: 0 auto;
+
+    #startBtn:hover {
+      background-color: #ff3355;
     }
+
+    #promises {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      gap: 10px;
+      height: 100vh;
+      overflow-y: scroll;
+      box-sizing: border-box;
+    }
+
     .promise {
-      font-size: 18px;
-      animation: fadeIn 0.5s ease-in-out;
+      width: 220px;
+      font-size: 1rem;
+      font-family: 'Great Vibes', cursive;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+      }
     }
-    #finalText {
-      font-size: 40px;
-      margin-top: 40px;
+
+    #final-message {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: white;
+      text-shadow: 0 0 15px #ff4d6d;
+    }
+
+    /* Scrollbar hidden */
+    #promises::-webkit-scrollbar {
       display: none;
     }
   </style>
 </head>
 <body>
-  <div id="countdownPage">
-    <h1 style="font-size: 32px;">💌 I PROMISE YOU PARTNER 💌</h1>
-    <img src="joshna.jpg" alt="Joshna" style="max-width: 300px; border-radius: 20px; box-shadow: 0 0 10px white;" />
-    <h2 id="countdown"></h2>
-    <button style="padding: 12px 24px; font-weight: bold; font-size: 18px;">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
+  <div id="overlay"></div>
+
+  <!-- Entry Section -->
+  <div id="entry">
+    <img src="joshna.jpg" alt="Joshna">
+    <h1>I Promise You, Partner</h1>
+    <button id="startBtn">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
-  <div id="passwordPage" class="hidden">
-    <h2>Enter the secret password ❤️</h2>
-    <input type="text" id="passwordInput" placeholder="Enter password..." />
-    <button onclick="checkPassword()">Unlock</button>
-  </div>
+  <!-- Promises Section -->
+  <div id="promises"></div>
 
-  <div id="promisesPage" class="hidden">
-    <div class="promise-grid" id="promiseGrid"></div>
-    <div id="finalText">I PROMISE 💌</div>
-  </div>
+  <!-- Final Message -->
+  <div id="final-message">I PROMISE</div>
 
   <script>
-    const birthday = new Date("Sep 5, 2025 00:00:00").getTime();
+    const releaseDate = new Date("September 5, 2025 00:00:00").getTime();
     const now = new Date().getTime();
-    const countdownPage = document.getElementById("countdownPage");
-    const passwordPage = document.getElementById("passwordPage");
-    const promisesPage = document.getElementById("promisesPage");
 
-    if (now < birthday) {
-      const countdownEl = document.getElementById("countdown");
-      setInterval(() => {
-        const now = new Date().getTime();
-        const gap = birthday - now;
-        const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-        const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((gap % (1000 * 60)) / 1000);
-        countdownEl.innerText = `🎂 ${d}d ${h}h ${m}m ${s}s left 🕰️`;
-      }, 1000);
-    } else {
-      countdownPage.classList.add("hidden");
-      passwordPage.classList.remove("hidden");
-    }
+    const entry = document.getElementById("entry");
+    const promisesContainer = document.getElementById("promises");
+    const finalMessage = document.getElementById("final-message");
+    const startBtn = document.getElementById("startBtn");
 
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
-      if (input === "I lv u partner") {
-        passwordPage.classList.add("hidden");
-        showPromises();
-      } else {
-        alert("Wrong password 😢");
-      }
-    }
+    const allPromises = [
+      "I'll always listen to you with my whole heart 💗",
+      "I'll be your strength when you feel weak 💪",
+      "I'll protect your smile every day 😊",
+      "I'll always stand by you no matter what 🌈",
+      "I'll cheer you up even on your worst days 🎈",
+      "I'll respect your opinions and dreams ✨",
+      "I'll never let you feel alone again 🤝",
+      "I'll make your birthday feel like a festival 🎉",
+      "I'll always remember the little things you love 🍫",
+      "I'll surprise you with my love often 🎁",
+      "I'll be the reason you smile a little wider 😄",
+      "I'll kiss your forehead when you're tired 😘",
+      "I'll write you notes just to say I love you 💌",
+      "I'll never let a day pass without saying 'I love you' 💖",
+      "I'll always pick your side, even when you're wrong 😉",
+      "I'll be the peace in your chaos 🕊️",
+      "I'll dance with you in the rain just to see you laugh 💃",
+      "I'll learn your favorite songs so we can sing together 🎶",
+      "I'll be your safe space when you feel down 🏡",
+      "I'll hug you like you're my whole world 🤗",
+      "I'll share my last bite of chocolate with you 🍫",
+      "I'll remind you every day how beautiful you are 🌸",
+      "I'll never judge your tears, I’ll wipe them for you 😢",
+      "I'll walk with you through every phase of life 🚶‍♀️🚶‍♂️",
+      "I'll watch your favorite shows even if I don’t like them 📺",
+      "I'll hold your hand in public proudly 🫶",
+      "I'll laugh at your silly jokes even if they're not funny 😂",
+      "I'll learn your love language and speak it fluently 🗣️",
+      "I'll always ask how your day was 🕰️",
+      "I'll never stop dating you, even after we're old 💑",
+      "I'll bake your favorite cake on every birthday 🎂",
+      "I'll be patient, especially when you're moody 😅",
+      "I'll plan surprise dates just to see you happy 🌟",
+      "I'll love your flaws as much as your strengths 🫶",
+      "I'll be your biggest fan and loudest cheerleader 📣",
+      "I'll always say sorry when I’m wrong 🙏",
+      "I'll remember your coffee order by heart ☕",
+      "I'll stay up late just to talk to you 🌙",
+      "I'll protect your secrets like a treasure 🗝️",
+      "I'll believe in your dreams more than anyone 🚀",
+      "I'll slow dance with you in the kitchen 💃🕺",
+      "I'll always kiss you goodnight 😘",
+      "I'll make time for you no matter how busy life gets 🕓",
+      "I'll treasure every moment spent with you ⏳",
+      "I'll be honest with you even when it's hard 💬",
+      "I'll keep every memory we make close to my heart 🧸",
+      "I'll forgive quickly and love endlessly ♾️",
+      "I'll always find new ways to make you laugh 🤭",
+      "I'll support your wildest goals 🌠",
+      "I'll send random 'I miss you' texts 💭",
+      "I'll always respect your 'me-time' ⏰",
+      "I'll take care of you when you're sick 🩺",
+      "I'll stand by your side during storms and sunshine ⛈️☀️",
+      "I'll never forget to hold your hand while crossing roads 🚶‍♂️🚶‍♀️",
+      "I'll create a playlist of our love story 🎵",
+      "I'll kiss your scars and love your imperfections 💋",
+      "I'll save every memory with you like a treasure chest 📸",
+      "I'll never stop calling you mine 🥰",
+      "I'll give you the last slice of pizza 🍕",
+      "I'll never compare you with anyone else 🙅‍♂️",
+      "I'll always smile when I talk about you 😍",
+      "I'll stand by your family like it’s mine 👨‍👩‍👧‍👦",
+      "I'll love the way you are, not how I want you to be 🪞",
+      "I'll comfort you when you feel anxious 🫂",
+      "I'll walk under one umbrella with you in the rain ☔",
+      "I'll build dreams with you one step at a time 🧱",
+      "I'll dance like no one's watching if it makes you laugh 💃🤣",
+      "I'll be your diary and keep your secrets safe 📖🔒",
+      "I'll get excited seeing your texts 📱💬",
+      "I'll learn your childhood stories and love them like mine 🧒",
+      "I'll call you cute even when you’re angry 😡💕",
+      "I'll fight for you, never with you 🛡️",
+      "I'll bring flowers on random days 🌹",
+      "I'll whisper 'I love you' when you're falling asleep 😴❤️",
+      "I'll be the calm in your chaos 🧘‍♂️",
+      "I'll grow with you emotionally and spiritually 🌱",
+      "I'll never let you go to bed sad 🌜😔",
+      "I'll listen to your rants like your biggest fan 🎤",
+      "I'll help you chase your dreams ✨",
+      "I'll always make you feel wanted 💞",
+      "I'll laugh at your childhood photos 📷😆",
+      "I'll wake you with kisses and warm hugs ☀️🤗",
+      "I'll never take your love for granted 🙌",
+      "I'll look into your eyes like you’re my entire universe 🌌",
+      "I'll hold on tighter during tough times 🪢",
+      "I'll cherish every message, call, and memory 📨",
+      "I'll always believe in your magic 🪄",
+      "I'll talk about our future like it’s tomorrow 🌅",
+      "I'll still love you even when you're grumpy 😤❤️",
+      "I'll be your favorite hello and hardest goodbye 👋",
+      "I'll always remember the way you laugh 🎶",
+      "I'll dream with you, not just for you 💭",
+      "I'll write your name in my heart forever 🖋️❤️",
+      "I'll make sure you never feel alone in a crowd 🧍‍♂️🧍‍♀️",
+      "I'll respect your silence and read your eyes 👀",
+      "I'll take late-night walks just to talk 🌃🚶",
+      "I'll promise to grow old with you gracefully 👵👴",
+      "I'll say 'I'm proud of you' often 🏆",
+      "I'll never stop being amazed by you 😯",
+      "I'll look forward to forever with you ⏳❤️",
+      "I'll always choose you, every day 💘",
+      "I'll give you warm hugs on cold days 🧣",
+      "I'll remember all your favorites — color, food, movie 🎨🍿🎥",
+      "I'll be silly with you, even in public 🤪",
+      "I'll never hide my love for you ❤️‍🔥",
+      "I'll learn from our fights, not run from them ⚔️➡️❤️",
+      "I'll always answer your calls, even at 3am 📞",
+      "I'll treat your happiness as my own 🧡",
+      "I'll make even ordinary days feel special 🌈",
+      "I'll write poems about your smile ✍️😊",
+      "I'll promise to love you more every single day 📆❤️",
+      "I'll never forget the day we met 🗓️",
+      "I'll always say 'We' instead of 'I' 👫",
+      "I'll make our love story timeless ⌛💞",
+      "I'll protect your heart with mine 🛡️❤️",
+      "I'll say sorry first, even when I'm not wrong 😅❤️",
+      "I'll hug you like we just met 🤗",
+      "I'll love you even more on your bad days 🖤",
+      "I'll celebrate your smallest wins like trophies 🏅",
+      "I'll be your home no matter where we are 🏠",
+      "I'll never stop falling in love with you again and again 🔁💘"
+    ];
 
-    function showPromises() {
-      promisesPage.classList.remove("hidden");
-      const promiseGrid = document.getElementById("promiseGrid");
-      const promises = [];
-      for (let i = 1; i <= 100; i++) {
-        promises.push(`I promise something special for you every single day... ❤️ #${i}`);
-      }
-      promises.forEach((text, i) => {
+    function startPromises() {
+      entry.style.display = "none";
+      promisesContainer.style.display = "flex";
+
+      let delay = 0;
+      allPromises.forEach((text, index) => {
         setTimeout(() => {
           const div = document.createElement("div");
-          div.className = "promise";
+          div.classList.add("promise");
+          div.style.animationDelay = `${index * 0.5}s`;
           div.textContent = text;
-          promiseGrid.appendChild(div);
-          if (i === promises.length - 1) {
+          promisesContainer.appendChild(div);
+
+          // Last promise fade out
+          if (index === allPromises.length - 1) {
             setTimeout(() => {
-              document.getElementById("finalText").style.display = "block";
-            }, 2000);
+              promisesContainer.style.display = "none";
+              finalMessage.style.display = "block";
+            }, 10000);
           }
-        }, i * 250);
+        }, delay);
+        delay += 300;
       });
     }
+
+    if (now >= releaseDate) {
+      entry.style.display = "flex";
+    } else {
+      document.body.innerHTML = "<h2 style='text-align:center;margin-top:50vh;color:white;'>❤️ Counting down to surprise... wait till Sep 5 ❤️</h2>";
+    }
+
+    startBtn.addEventListener("click", startPromises);
   </script>
 </body>
 </html>
