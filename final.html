@@ -1,296 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Our 100 Promises</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Final Promise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('love-bg.jpg') no-repeat center center fixed;
+      background: url('promise-bg.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Great Vibes', cursive;
       color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
       overflow: hidden;
     }
 
-    #overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: -1;
-    }
-
-    #entry {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      height: 100vh;
-    }
-
-    #entry img {
-      width: 220px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-
-    #startBtn {
-      background-color: #ff4d6d;
-      color: white;
-      font-size: 1.1rem;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff4d6d;
-      transition: 0.3s;
-    }
-
-    #startBtn:hover {
-      background-color: #ff3355;
-    }
-
-    #promises {
-      display: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+    #promise-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
       padding: 30px;
-      gap: 10px;
-      height: 100vh;
-      overflow-y: scroll;
-      box-sizing: border-box;
+      overflow-y: auto;
+      height: 90vh;
     }
 
     .promise {
-      width: 220px;
-      font-size: 1rem;
-      font-family: 'Great Vibes', cursive;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 15px;
-      text-align: center;
       opacity: 0;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      font-size: 1.5rem;
+      transition: opacity 1s ease;
+      white-space: normal;
     }
 
     #final-message {
-      display: none;
-      position: absolute;
+      font-size: 3rem;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
+      display: none;
       color: white;
-      text-shadow: 0 0 15px #ff4d6d;
+      text-shadow: 2px 2px 8px black;
     }
 
-    /* Scrollbar hidden */
-    #promises::-webkit-scrollbar {
-      display: none;
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div id="overlay"></div>
 
-  <!-- Entry Section -->
-  <div id="entry">
-    <img src="joshna.jpg" alt="Joshna">
-    <h1>I Promise You, Partner</h1>
-    <button id="startBtn">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
-  </div>
-
-  <!-- Promises Section -->
-  <div id="promises"></div>
-
-  <!-- Final Message -->
+  <div id="promise-container"></div>
   <div id="final-message">I PROMISE</div>
 
   <script>
-    const releaseDate = new Date("September 5, 2025 00:00:00").getTime();
-    const now = new Date().getTime();
-
-    const entry = document.getElementById("entry");
-    const promisesContainer = document.getElementById("promises");
-    const finalMessage = document.getElementById("final-message");
-    const startBtn = document.getElementById("startBtn");
-
-    const allPromises = [
-      "I'll always listen to you with my whole heart 💗",
-      "I'll be your strength when you feel weak 💪",
-      "I'll protect your smile every day 😊",
-      "I'll always stand by you no matter what 🌈",
-      "I'll cheer you up even on your worst days 🎈",
-      "I'll respect your opinions and dreams ✨",
-      "I'll never let you feel alone again 🤝",
-      "I'll make your birthday feel like a festival 🎉",
-      "I'll always remember the little things you love 🍫",
-      "I'll surprise you with my love often 🎁",
-      "I'll be the reason you smile a little wider 😄",
-      "I'll kiss your forehead when you're tired 😘",
-      "I'll write you notes just to say I love you 💌",
-      "I'll never let a day pass without saying 'I love you' 💖",
-      "I'll always pick your side, even when you're wrong 😉",
-      "I'll be the peace in your chaos 🕊️",
-      "I'll dance with you in the rain just to see you laugh 💃",
-      "I'll learn your favorite songs so we can sing together 🎶",
-      "I'll be your safe space when you feel down 🏡",
-      "I'll hug you like you're my whole world 🤗",
-      "I'll share my last bite of chocolate with you 🍫",
-      "I'll remind you every day how beautiful you are 🌸",
-      "I'll never judge your tears, I’ll wipe them for you 😢",
-      "I'll walk with you through every phase of life 🚶‍♀️🚶‍♂️",
-      "I'll watch your favorite shows even if I don’t like them 📺",
-      "I'll hold your hand in public proudly 🫶",
-      "I'll laugh at your silly jokes even if they're not funny 😂",
-      "I'll learn your love language and speak it fluently 🗣️",
-      "I'll always ask how your day was 🕰️",
-      "I'll never stop dating you, even after we're old 💑",
-      "I'll bake your favorite cake on every birthday 🎂",
-      "I'll be patient, especially when you're moody 😅",
-      "I'll plan surprise dates just to see you happy 🌟",
-      "I'll love your flaws as much as your strengths 🫶",
-      "I'll be your biggest fan and loudest cheerleader 📣",
-      "I'll always say sorry when I’m wrong 🙏",
-      "I'll remember your coffee order by heart ☕",
-      "I'll stay up late just to talk to you 🌙",
-      "I'll protect your secrets like a treasure 🗝️",
-      "I'll believe in your dreams more than anyone 🚀",
-      "I'll slow dance with you in the kitchen 💃🕺",
-      "I'll always kiss you goodnight 😘",
-      "I'll make time for you no matter how busy life gets 🕓",
-      "I'll treasure every moment spent with you ⏳",
-      "I'll be honest with you even when it's hard 💬",
-      "I'll keep every memory we make close to my heart 🧸",
-      "I'll forgive quickly and love endlessly ♾️",
-      "I'll always find new ways to make you laugh 🤭",
-      "I'll support your wildest goals 🌠",
-      "I'll send random 'I miss you' texts 💭",
-      "I'll always respect your 'me-time' ⏰",
-      "I'll take care of you when you're sick 🩺",
-      "I'll stand by your side during storms and sunshine ⛈️☀️",
-      "I'll never forget to hold your hand while crossing roads 🚶‍♂️🚶‍♀️",
-      "I'll create a playlist of our love story 🎵",
-      "I'll kiss your scars and love your imperfections 💋",
-      "I'll save every memory with you like a treasure chest 📸",
-      "I'll never stop calling you mine 🥰",
-      "I'll give you the last slice of pizza 🍕",
-      "I'll never compare you with anyone else 🙅‍♂️",
-      "I'll always smile when I talk about you 😍",
-      "I'll stand by your family like it’s mine 👨‍👩‍👧‍👦",
-      "I'll love the way you are, not how I want you to be 🪞",
-      "I'll comfort you when you feel anxious 🫂",
-      "I'll walk under one umbrella with you in the rain ☔",
-      "I'll build dreams with you one step at a time 🧱",
-      "I'll dance like no one's watching if it makes you laugh 💃🤣",
-      "I'll be your diary and keep your secrets safe 📖🔒",
-      "I'll get excited seeing your texts 📱💬",
-      "I'll learn your childhood stories and love them like mine 🧒",
-      "I'll call you cute even when you’re angry 😡💕",
-      "I'll fight for you, never with you 🛡️",
-      "I'll bring flowers on random days 🌹",
-      "I'll whisper 'I love you' when you're falling asleep 😴❤️",
-      "I'll be the calm in your chaos 🧘‍♂️",
-      "I'll grow with you emotionally and spiritually 🌱",
-      "I'll never let you go to bed sad 🌜😔",
-      "I'll listen to your rants like your biggest fan 🎤",
-      "I'll help you chase your dreams ✨",
-      "I'll always make you feel wanted 💞",
-      "I'll laugh at your childhood photos 📷😆",
-      "I'll wake you with kisses and warm hugs ☀️🤗",
-      "I'll never take your love for granted 🙌",
-      "I'll look into your eyes like you’re my entire universe 🌌",
-      "I'll hold on tighter during tough times 🪢",
-      "I'll cherish every message, call, and memory 📨",
-      "I'll always believe in your magic 🪄",
-      "I'll talk about our future like it’s tomorrow 🌅",
-      "I'll still love you even when you're grumpy 😤❤️",
-      "I'll be your favorite hello and hardest goodbye 👋",
-      "I'll always remember the way you laugh 🎶",
-      "I'll dream with you, not just for you 💭",
-      "I'll write your name in my heart forever 🖋️❤️",
-      "I'll make sure you never feel alone in a crowd 🧍‍♂️🧍‍♀️",
-      "I'll respect your silence and read your eyes 👀",
-      "I'll take late-night walks just to talk 🌃🚶",
-      "I'll promise to grow old with you gracefully 👵👴",
-      "I'll say 'I'm proud of you' often 🏆",
-      "I'll never stop being amazed by you 😯",
-      "I'll look forward to forever with you ⏳❤️",
-      "I'll always choose you, every day 💘",
-      "I'll give you warm hugs on cold days 🧣",
-      "I'll remember all your favorites — color, food, movie 🎨🍿🎥",
-      "I'll be silly with you, even in public 🤪",
-      "I'll never hide my love for you ❤️‍🔥",
-      "I'll learn from our fights, not run from them ⚔️➡️❤️",
-      "I'll always answer your calls, even at 3am 📞",
-      "I'll treat your happiness as my own 🧡",
-      "I'll make even ordinary days feel special 🌈",
-      "I'll write poems about your smile ✍️😊",
-      "I'll promise to love you more every single day 📆❤️",
-      "I'll never forget the day we met 🗓️",
-      "I'll always say 'We' instead of 'I' 👫",
-      "I'll make our love story timeless ⌛💞",
-      "I'll protect your heart with mine 🛡️❤️",
-      "I'll say sorry first, even when I'm not wrong 😅❤️",
-      "I'll hug you like we just met 🤗",
-      "I'll love you even more on your bad days 🖤",
-      "I'll celebrate your smallest wins like trophies 🏅",
-      "I'll be your home no matter where we are 🏠",
-      "I'll never stop falling in love with you again and again 🔁💘"
+    const promises = [
+      "I promise to love you unconditionally every day. ❤️",
+      "I promise to make you smile even on your worst days. 😊",
+      "I promise to listen to you with all my heart. 👂",
+      "I promise to protect your heart like it’s mine. 🛡️",
+      "I promise to laugh with you even at silly things. 😂",
+      "I promise to be your biggest fan. 📣",
+      "I promise to support your dreams like they’re mine. 🌈",
+      "I promise to stand by you no matter what. ✨",
+      "I promise to always choose you. 💘",
+      "I promise to never stop falling for you. 💞",
+      "I promise to make you feel special every single day. 🌟",
+      "I promise to celebrate your victories as my own. 🏆",
+      "I promise to wipe your tears and hold your hand. 🤝",
+      "I promise to bring you food when you're too lazy. 🍕",
+      "I promise to hug you tighter on sad days. 🤗",
+      "I promise to annoy you just enough to make you laugh. 😝",
+      "I promise to be patient and understanding. 🙏",
+      "I promise to grow old with you beautifully. 👵👴",
+      "I promise to dance with you in the rain. 🌧️",
+      "I promise to be your personal cuddle machine. 🐻",
+      "I promise to say 'I love you' every day. 💌",
+      "I promise to keep your secrets safe. 🔒",
+      "I promise to cherish every memory with you. 🎞️",
+      "I promise to hold your pinky and never let go. 🤞",
+      "I promise to fight for you and never give up. ⚔️",
+      "I promise to bring chocolates when you're sad. 🍫",
+      "I promise to take selfies with you everywhere. 📸",
+      "I promise to let you pick the movie (sometimes). 🎬",
+      "I promise to always care more than you expect. 💝",
+      "I promise to love your flaws as much as your perfections. 💗",
+      "I promise to look into your eyes and see home. 🏡",
+      "I promise to never stop calling you mine. 💍",
+      "I promise to write you little notes and messages. 📝",
+      "I promise to warm your hands in the cold. 🧤",
+      "I promise to slow dance with you even with no music. 💃",
+      "I promise to be your pillow when you're tired. 🛏️",
+      "I promise to learn your favorite songs by heart. 🎶",
+      "I promise to never leave you alone in hard times. 🧱",
+      "I promise to cheer you up with memes. 🤪",
+      "I promise to never let a day go without talking to you. 📱",
+      "I promise to keep surprises alive. 🎁",
+      "I promise to whisper “I miss you” when we’re apart. 💭",
+      "I promise to always remember our anniversaries. 🗓️",
+      "I promise to be your safe space. 🧸",
+      "I promise to give forehead kisses often. 😘",
+      "I promise to hold you when you're scared. 😨",
+      "I promise to say sorry even when I’m right. 🙈",
+      "I promise to always be silly with you. 🥴",
+      "I promise to protect your dreams while you sleep. 🌙",
+      "I promise to love you just as much in your pajamas. 🧦",
+      "I promise to surprise you with your fav snacks. 🍟",
+      "I promise to be your comfort zone. 🫂",
+      "I promise to never judge your past. 📖",
+      "I promise to keep dreaming with you. 🌠",
+      "I promise to be honest even when it’s hard. 🫶",
+      "I promise to respect you deeply. 👑",
+      "I promise to fight with you and still hold your hand. 🔁",
+      "I promise to kiss you like it's the first time. 💋",
+      "I promise to sing for you even if it’s off-tune. 🎤",
+      "I promise to warm your soul with love. 🔥",
+      "I promise to make you proud to be mine. 🥇",
+      "I promise to go on endless walks with you. 🚶‍♀️🚶‍♂️",
+      "I promise to look at you like you’re the universe. 🌌",
+      "I promise to cherish every hug. 🤍",
+      "I promise to cook for you with love (or try). 🍳",
+      "I promise to laugh at your worst jokes. 😅",
+      "I promise to wait for you, no matter how long. ⏳",
+      "I promise to kiss you goodnight in my dreams. 🌜",
+      "I promise to say your name like a love song. 🎵",
+      "I promise to love you even on bad hair days. 💇",
+      "I promise to give you the last piece of pizza. 🍕",
+      "I promise to never ghost you. 👻",
+      "I promise to learn what makes you happy. 📚",
+      "I promise to give you flowers on random days. 🌹",
+      "I promise to grow stronger with you. 💪",
+      "I promise to hold you tighter when you're weak. 🤍",
+      "I promise to never lie, even in silence. 🤫",
+      "I promise to share all my dreams with you. ✨",
+      "I promise to celebrate your little wins. 🎉",
+      "I promise to call you just to hear your voice. 📞",
+      "I promise to be proud of who you are. 👏",
+      "I promise to make your sadness mine. 🫂",
+      "I promise to hug you longer than yesterday. 🧸",
+      "I promise to draw hearts on your hand. 🖋️",
+      "I promise to send you ‘I love you’ texts daily. 💬",
+      "I promise to be excited every time I see you. 🥹",
+      "I promise to say your name with a smile. 😊",
+      "I promise to make our love a fairytale. 📖",
+      "I promise to love you even when we argue. 💢",
+      "I promise to see beauty in your scars. 🩹",
+      "I promise to say sorry first when we fight. 🤍",
+      "I promise to remember every little thing you love. 🎀",
+      "I promise to make your comfort my mission. 🪄",
+      "I promise to be your human diary. 📓",
+      "I promise to be your sunshine when skies are grey. ☀️",
+      "I promise to love your soul endlessly. 🌊",
+      "I promise to never let distance weaken us. 🛫",
+      "I promise to be your today, tomorrow, forever. 🔁",
+      "I promise to walk beside you always. 👣",
+      "I promise to love you more than words could ever say. 🥰"
     ];
 
-    function startPromises() {
-      entry.style.display = "none";
-      promisesContainer.style.display = "flex";
+    let container = document.getElementById("promise-container");
 
-      let delay = 0;
-      allPromises.forEach((text, index) => {
+    let index = 0;
+    function showNextPromise() {
+      if (index < promises.length) {
+        const div = document.createElement("div");
+        div.className = "promise";
+        div.innerText = promises[index];
+        container.appendChild(div);
+
         setTimeout(() => {
-          const div = document.createElement("div");
-          div.classList.add("promise");
-          div.style.animationDelay = `${index * 0.5}s`;
-          div.textContent = text;
-          promisesContainer.appendChild(div);
+          div.style.opacity = 1;
+          container.scrollTop = container.scrollHeight;
+        }, 100);
 
-          // Last promise fade out
-          if (index === allPromises.length - 1) {
-            setTimeout(() => {
-              promisesContainer.style.display = "none";
-              finalMessage.style.display = "block";
-            }, 10000);
-          }
-        }, delay);
-        delay += 300;
-      });
+        index++;
+        setTimeout(showNextPromise, 1300);
+      } else {
+        setTimeout(() => {
+          container.style.display = "none";
+          document.getElementById("final-message").style.display = "block";
+        }, 3000);
+      }
     }
 
-    if (now >= releaseDate) {
-      entry.style.display = "flex";
-    } else {
-      document.body.innerHTML = "<h2 style='text-align:center;margin-top:50vh;color:white;'>❤️ Counting down to surprise... wait till Sep 5 ❤️</h2>";
-    }
-
-    startBtn.addEventListener("click", startPromises);
+    window.onload = showNextPromise;
   </script>
 </body>
 </html>
