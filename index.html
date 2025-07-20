@@ -6,7 +6,11 @@
   <title>Partner Birthday Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       background: black;
       color: white;
@@ -14,44 +18,65 @@
       text-align: center;
       overflow: hidden;
     }
-    video {
+
+    #bg-video {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
       z-index: -1;
     }
+
     .container {
       position: relative;
       top: 20vh;
+      z-index: 1;
     }
+
     img {
       max-width: 80%;
       margin-bottom: 20px;
     }
+
     #countdown {
       font-size: 1.5rem;
+      font-weight: bold;
       margin: 10px 0;
     }
+
     #waiting-text {
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
+
     .btn-love {
-      background: red;
+      background-color: red;
       color: white;
-      padding: 10px 20px;
-      border: none;
+      font-weight: bold;
+      padding: 12px 20px;
       border-radius: 30px;
-      font-size: 1rem;
+      border: none;
       box-shadow: 0 0 15px skyblue;
+      font-size: 1rem;
       cursor: pointer;
+    }
+
+    .btn-love:hover {
+      background-color: #ff4d4d;
     }
   </style>
 </head>
 <body>
-  <video src="waiting-bg.mp4" autoplay loop muted></video>
+
+  <!-- ✅ Background Video -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="waiting-bg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- ✅ Countdown Section -->
   <div class="container">
     <img src="partner-title.png" alt="Joshna" />
     <div id="countdown">Loading...</div>
@@ -59,25 +84,27 @@
     <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
+  <!-- ✅ Script -->
   <script>
     const birthday = new Date("September 5, 2025 00:00:00").getTime();
+
     function updateCountdown() {
       const now = new Date().getTime();
       const gap = birthday - now;
+
       const d = Math.floor(gap / (1000 * 60 * 60 * 24));
       const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((gap % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").innerText = gap > 0
+      document.getElementById("countdown").innerHTML =
+        gap > 0
         ? `🤍🥺 ${d}d ${h}h ${m}m ${s}s left 😚💋`
         : "🎉 Happy Birthday Joshna 🎉";
     }
+
     setInterval(updateCountdown, 1000);
   </script>
+
 </body>
 </html>
-<video autoplay muted loop id="bg-video" playsinline>
-  <source src="waiting-bg.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
