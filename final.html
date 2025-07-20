@@ -1,106 +1,202 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partner Birthday Countdown</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>100 Promises</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
+      background: url('promise-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }body {
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  background-image: url('countdown-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
+      padding: 30px 20px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
 
-.countdown-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px black;
+    }
 
-.countdown-container img {
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px red;
-  margin-bottom: 20px;
-}
+    .promise-box {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px;
+      margin: 12px auto;
+      border-radius: 12px;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.6s forwards;
+    }
 
-.countdown-text {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+    .promise-box:nth-child(n) {
+      animation-delay: calc(0.25s * var(--i));
+    }
 
-.sub-text {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.countdown-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 30px;
-  box-shadow: 0 0 10px white;
-  cursor: pointer;
-}
+    #final-message {
+      display: none;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-top: 60px;
+      text-shadow: 2px 2px 10px black;
+      animation: fadeInBig 1.5s ease-in forwards;
+    }
 
-.promise-box {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  color: white;
-  background: rgba(0,0,0,0.6);
-  padding: 15px;
-  margin: 10px auto;
-  max-width: 600px;
-  border-radius: 8px;
-}
-
+    @keyframes fadeInBig {
+      0% {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="countdown-container">
-    <img src="partner-title.png" alt="Joshna">
-    <div class="countdown-text" id="countdown">Loading...</div>
-    <div class="sub-text">💖 Countdown to your special day, Partner 💖</div>
-    <button class="countdown-button" onclick="location.href='final.html'">
-      💌 CLICK TO OPEN MY HEART AND LOVE 💌
-    </button>
-  </div>  <script>
-    const birthday = new Date("September 5, 2025 00:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const gap = birthday - now;
+  <h1>💌 I Promise You Partner 💌</h1>
 
-      const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-      const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((gap % (1000 * 60)) / 1000);
+  <div id="promises"></div>
 
-      document.getElementById("countdown").innerText = `🎉 ${d}d ${h}h ${m}m ${s}s left 🎂❤️\n\nHappy Birthday Joshna 🥳`;
-    }
+  <div id="final-message">I PROMISE 💖</div>
 
-    setInterval(updateCountdown, 1000);
-  </script></body>
+  <script>
+    const promises = [
+      "I promise to always love you endlessly. ❤️",
+      "I promise to stand by your side forever. 🤝",
+      "I promise to wipe your tears when you cry. 😢",
+      "I promise to make you laugh every day. 😂",
+      "I promise to listen to you with my whole heart. 👂",
+      "I promise to respect your feelings always. 💗",
+      "I promise to never stop dating you. 💕",
+      "I promise to cuddle you like a panda. 🐼",
+      "I promise to stay loyal till the end. 🔐",
+      "I promise to kiss you like it's the first time. 😘",
+      "I promise to grow with you, not apart. 🌱",
+      "I promise to learn your love language. 📖",
+      "I promise to protect you like a superhero. 🦸‍♂️",
+      "I promise to never go to sleep angry. 🌙",
+      "I promise to cook your favorite meal. 🍝",
+      "I promise to hold your hand in public. 🤲",
+      "I promise to compliment you often. ✨",
+      "I promise to be your safe place. 🏡",
+      "I promise to love your flaws. 🧡",
+      "I promise to hug you without reason. 🤗",
+      "I promise to say ‘I love you’ every day. 💬",
+      "I promise to bring you flowers randomly. 🌸",
+      "I promise to miss you when we're apart. 🥺",
+      "I promise to give you all of me. 🫀",
+      "I promise to call you even when busy. 📞",
+      "I promise to remember our special dates. 📆",
+      "I promise to be goofy to make you smile. 🤪",
+      "I promise to surprise you often. 🎁",
+      "I promise to travel the world with you. ✈️",
+      "I promise to admire you always. 🥰",
+      "I promise to be your peace. 🕊️",
+      "I promise to believe in you. 💪",
+      "I promise to take care of you when you're sick. 🤒",
+      "I promise to read your mind sometimes. 🧠",
+      "I promise to make you feel special. 🎀",
+      "I promise to trust you with my heart. 🔒",
+      "I promise to love your soul. 🫶",
+      "I promise to make memories forever. 📸",
+      "I promise to choose you every day. 🔁",
+      "I promise to be silly for you. 🐒",
+      "I promise to never let you go. ✋",
+      "I promise to share my fries with you. 🍟",
+      "I promise to love our future kids. 👶",
+      "I promise to help you chase dreams. 🌈",
+      "I promise to respect your space. 🌌",
+      "I promise to forgive easily. 🧽",
+      "I promise to cheer for your success. 🏆",
+      "I promise to be your biggest fan. 🎉",
+      "I promise to walk with you forever. 👣",
+      "I promise to wake up beside you. ☀️",
+      "I promise to build a home with love. 🏠",
+      "I promise to be proud of you. 🏅",
+      "I promise to share secrets with you. 🤫",
+      "I promise to dance with you under stars. 🌃",
+      "I promise to be your diary. 📖",
+      "I promise to be honest always. 💯",
+      "I promise to smile seeing your texts. 📱",
+      "I promise to plan sweet dates. 🥂",
+      "I promise to be your teammate. 🏀",
+      "I promise to fix your crown. 👑",
+      "I promise to watch sunsets with you. 🌅",
+      "I promise to carry you if needed. 🛍️",
+      "I promise to take care of your heart. ❤️‍🩹",
+      "I promise to cherish you daily. 🥂",
+      "I promise to always call you ‘mine’. 🔐",
+      "I promise to never stop flirting. 😏",
+      "I promise to comfort your pain. 🩹",
+      "I promise to warm your cold hands. 🧤",
+      "I promise to be gentle with your heart. 🧸",
+      "I promise to laugh with you forever. 😄",
+      "I promise to slow dance with you. 💃",
+      "I promise to give you forehead kisses. 😚",
+      "I promise to support your decisions. 💭",
+      "I promise to keep our secrets. 🔏",
+      "I promise to be your cozy blanket. 🛌",
+      "I promise to love even your chaos. 🌪️",
+      "I promise to say sorry first. 🫢",
+      "I promise to be better every day. 🚀",
+      "I promise to love you deeper. 🌊",
+      "I promise to write poems for you. 📝",
+      "I promise to watch movies with you. 🎬",
+      "I promise to believe in us. 🥂",
+      "I promise to accept all of you. 🎈",
+      "I promise to grow old with you. 👴👵",
+      "I promise to sing for you. 🎤",
+      "I promise to dream with you. 🌙",
+      "I promise to be yours forever. 💍",
+      "I promise to make time for us. ⏰",
+      "I promise to never leave your side. 🚪",
+      "I promise to be your biggest hug. 🫂",
+      "I promise to never stop loving. 🔥",
+      "I promise to learn with you. 🧠",
+      "I promise to always come back. 🧭",
+      "I promise to be strong for you. 🦾",
+      "I promise to make you proud. 🎓",
+      "I promise to giggle with you. 😝",
+      "I promise to hold you forever. 🤝",
+      "I promise to be with you. Always. 🕰️",
+      "I promise to never break your heart. 💔🚫",
+      "I promise to always choose us. ♾️",
+      "I promise to love you... endlessly. 💖"
+    ];
+
+    const promisesDiv = document.getElementById("promises");
+
+    promises.forEach((promise, i) => {
+      const div = document.createElement("div");
+      div.className = "promise-box";
+      div.textContent = promise;
+      div.style.setProperty('--i', i);
+      promisesDiv.appendChild(div);
+    });
+
+    setTimeout(() => {
+      document.getElementById("final-message").style.display = "block";
+    }, promises.length * 250 + 1000);
+  </script>
+
+</body>
 </html>
