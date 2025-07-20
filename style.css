@@ -85,12 +85,12 @@ body {
   border-radius: 20px;
   box-shadow: 0 0 20px #ff5e5e;
 }
-video#bg-video {
+#bg-video {
   position: fixed;
   top: 0;
   left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
+  z-index: -1;
 }
