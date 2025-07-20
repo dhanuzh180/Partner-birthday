@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>💌 100 Promises</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    @font-face {
+      font-family: 'Classical Romance';
+      src: url('classical-romance.ttf') format('truetype');
+    }
+
     body {
       margin: 0;
-      font-family: 'Great Vibes', cursive;
       background: black;
+      font-family: 'Classical Romance', cursive;
       color: white;
       overflow: hidden;
     }
 
-    .start-screen, .promise-screen, .final-message {
+    .start-screen, .final-message {
       position: absolute;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: black;
+      z-index: 10;
     }
 
     .start-screen img {
       width: 250px;
       border-radius: 20px;
-      margin-bottom: 20px;
       box-shadow: 0 0 20px red;
+      margin-bottom: 20px;
     }
 
     .start-screen h1 {
-      font-size: 2.5rem;
       color: pink;
+      font-size: 2.5rem;
     }
 
     .start-screen button {
@@ -52,22 +56,23 @@
 
     .promise-screen {
       display: none;
+      width: 100%;
+      height: 100%;
       background: url('promise-bg.jpg') no-repeat center center;
       background-size: cover;
-      flex-wrap: wrap;
-      padding: 30px;
-      align-content: flex-start;
-      justify-content: flex-start;
-      gap: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      box-sizing: border-box;
+      overflow-y: auto;
     }
 
     .promise {
-      width: calc(33% - 20px);
-      min-width: 250px;
       font-size: 1.4rem;
       opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-      text-shadow: 2px 2px 6px black;
+      transition: opacity 0.7s ease;
+      text-shadow: 1px 1px 3px black;
     }
 
     .promise.show {
@@ -76,152 +81,55 @@
 
     .final-message {
       display: none;
-      font-size: 4rem;
-      color: #ff99cc;
       background: url('promise-bg.jpg') no-repeat center center;
       background-size: cover;
-      justify-content: center;
-      align-items: center;
+      font-size: 4rem;
+      color: #ff99cc;
       text-shadow: 3px 3px 10px black;
-    }
-
-    @media (max-width: 600px) {
-      .promise {
-        width: 100%;
-        text-align: center;
-      }
+      z-index: 20;
     }
   </style>
 </head>
 <body>
 
-  <!-- Start Page -->
+  <!-- Start Screen -->
   <div class="start-screen" id="startScreen">
     <h1>💌 I Promise You Partner 💌</h1>
     <img src="joshna.jpg" alt="Joshna">
-    <button onclick="start()">💌 CLICK HERE 💌</button>
+    <button onclick="startPromises()">💌 CLICK HERE 💌</button>
   </div>
 
-  <!-- Promises Page -->
+  <!-- Promise Screen -->
   <div class="promise-screen" id="promiseScreen"></div>
 
-  <!-- Final Page -->
+  <!-- Final Message -->
   <div class="final-message" id="finalMessage">💌 I PROMISE 💌</div>
 
   <script>
     const promises = [
-      "💖 I promise to choose you, every single day.",
-      "🥺 I promise to never let you feel alone, even for a second.",
-      "🎧 I promise to listen to your silence when words aren’t enough.",
-      "💬 I promise to speak gently, even in anger.",
-      "🤝 I promise to be your teammate in everything.",
-      "🫂 I promise to hold you tighter when the world feels heavy.",
-      "💐 I promise to bring flowers just because you deserve it.",
-      "📖 I promise to write our love story with you, one chapter at a time.",
-      "🥰 I promise to look at you like it’s the first time, forever.",
-      "👑 I promise to treat you like the queen you are.",
-      "💤 I promise to whisper 'I love you' before you sleep.",
-      "🌅 I promise to be your sunrise when life gets dark.",
-      "🧸 I promise to be your comfort on sad days.",
-      "🛐 I promise to pray for your smile always.",
-      "🌧️ I promise to stand with you in every storm.",
-      "🍫 I promise to share my last piece of chocolate with you.",
-      "🌍 I promise to travel the world, just to find your smile.",
-      "🎶 I promise to dance with you, even with no music.",
-      "🍲 I promise to feed you with love when you're tired.",
-      "📸 I promise to capture every memory of us.",
-      "📱 I promise to call you even if just to hear you breathe.",
-      "🎂 I promise to make every birthday magical.",
-      "💌 I promise to write love letters in the digital age.",
-      "🧭 I promise to never let us lose direction.",
-      "💡 I promise to be your light in dark times.",
-      "🐻 I promise to always protect your innocence.",
-      "🍃 I promise to stay soft for your heart.",
-      "🏡 I promise to build a home inside my arms.",
-      "🧁 I promise to sweeten your worst day.",
-      "🕊️ I promise to fight for your peace.",
-      "📦 I promise to carry your emotional baggage with love.",
-      "🎀 I promise to gift you my truest self.",
-      "📝 I promise to learn your love language by heart.",
-      "👕 I promise to let you wear my favorite hoodie.",
-      "💭 I promise to dream with you, every night.",
-      "🥂 I promise to toast to your tiniest wins.",
-      "🌌 I promise to count stars with you forever.",
-      "🚗 I promise road trips and holding hands in silence.",
-      "🪞 I promise to remind you how beautiful you are, daily.",
-      "🌙 I promise to give you the moon, even in words.",
-      "🧺 I promise to do laundry with you like a love song.",
-      "💳 I promise to spend time, not just money, on us.",
-      "🎈 I promise to be your reason to smile, always.",
-      "🪴 I promise to grow with you, not just age.",
-      "🐾 I promise to love your flaws like freckles on stars.",
-      "💎 I promise to treasure you like you're rare.",
-      "👶 I promise to be childish with you, forever.",
-      "🎯 I promise to never stop chasing your heart.",
-      "🎤 I promise to sing badly just to make you laugh.",
-      "📚 I promise to know your heart like my favorite book.",
-      "🧠 I promise to understand before I react.",
-      "🎁 I promise to give my time, not just things.",
-      "📆 I promise to make every date feel special.",
-      "🕰️ I promise to give you my forever, not just my now.",
-      "🩷 I promise to never fall out of love with you.",
-      "🪄 I promise to make your ordinary days feel magical.",
-      "🪙 I promise to be rich in love with you.",
-      "🏹 I promise to let love win every argument.",
-      "🍀 I promise to be your luck in every storm.",
-      "🕊️ I promise to forgive, and grow from mistakes.",
-      "🌻 I promise to bloom with you every season.",
-      "🥹 I promise to cry with you, and for you.",
-      "🧦 I promise to steal your socks and your heart.",
-      "🍕 I promise to share my pizza — that’s true love.",
-      "📦 I promise to pack my ego and only carry love.",
-      "🫀 I promise to keep my heart reserved for you.",
-      "🚪 I promise to always open up, not shut down.",
-      "👨‍👧 I promise to care for you like my own child sometimes.",
-      "💓 I promise to love you with every heartbeat.",
-      "🕯️ I promise to light up your worst days.",
-      "🫶 I promise to love your scars and your strengths.",
-      "🏆 I promise to celebrate your courage.",
-      "🧼 I promise to clean up my mess and own my flaws.",
-      "🛌 I promise to nap next to you on lazy Sundays.",
-      "🌄 I promise to say 'good morning' forever.",
-      "📖 I promise to write our future like a fairytale.",
-      "🎮 I promise to play with you, not play games.",
-      "💬 I promise to reply with love, not ego.",
-      "🏹 I promise to guard your heart like mine.",
-      "👂 I promise to always listen deeply.",
-      "🍓 I promise to make your life sweet and soft.",
-      "🚲 I promise to ride life’s ups and downs together.",
-      "🎨 I promise to color your greyest days.",
-      "🍯 I promise to be honey in your bitterness.",
-      "🔒 I promise to never unlock our love for anyone else.",
-      "💫 I promise to believe in your magic always.",
-      "🎯 I promise to aim my actions with love always.",
-      "📎 I promise to stick with you through thick and thin.",
-      "🧃 I promise to be your energy when you're drained.",
-      "🫖 I promise to calm your anxiety with presence.",
-      "🧣 I promise to warm your coldest moments.",
-      "🚀 I promise to launch with you into dreams.",
-      "🪤 I promise to catch your fears and replace with faith.",
-      "🧃 I promise to be the juice in your joy.",
-      "💬 I promise to speak 'I love you' like a daily prayer.",
-      "🌠 I promise to make a wish on us — every night.",
-      "👣 I promise to walk beside you, not ahead or behind.",
-      "👓 I promise to see you clearly even in chaos.",
-      "🧭 I promise to guide us with honesty and grace.",
-      "💘 I promise to never let go, even if the world does.",
+      "💌 I promise to love you even on your worst days.",
+      "🎈 I promise to listen without judgment.",
+      "🎁 I promise to support your dreams always.",
+      "🌈 I promise to add colors to your rainy days.",
+      "💖 I promise to hold your hand through every storm.",
+      "🍫 I promise to share my last bite of chocolate with you.",
+      "🧸 I promise to be your warmest hug.",
+      "🎶 I promise to dance with you, even without music.",
+      "🕯️ I promise to light up your world when it’s dark.",
+      "🌟 I promise to always make you feel special.",
+      // Add up to 100 cute, deep, romantic promises with emojis...
     ];
 
-    let currentIndex = 0;
+    let current = 0;
 
-    function start() {
+    function startPromises() {
       document.getElementById("startScreen").style.display = "none";
-      document.getElementById("promiseScreen").style.display = "flex";
-      showPromise();
+      document.getElementById("promiseScreen").style.display = "grid";
+      showNextPromise();
     }
 
-    function showPromise() {
-      if (currentIndex >= promises.length) {
+    function showNextPromise() {
+      if (current >= promises.length) {
         setTimeout(() => {
           document.getElementById("promiseScreen").style.display = "none";
           document.getElementById("finalMessage").style.display = "flex";
@@ -229,16 +137,16 @@
         return;
       }
 
-      const p = document.createElement("div");
-      p.className = "promise";
-      p.textContent = promises[currentIndex];
-      document.getElementById("promiseScreen").appendChild(p);
+      const promiseDiv = document.createElement("div");
+      promiseDiv.classList.add("promise");
+      promiseDiv.innerText = promises[current];
+      document.getElementById("promiseScreen").appendChild(promiseDiv);
 
       setTimeout(() => {
-        p.classList.add("show");
-        currentIndex++;
-        showPromise();
-      }, 700);
+        promiseDiv.classList.add("show");
+        current++;
+        showNextPromise();
+      }, 900); // Adjust for slower or faster reveal
     }
   </script>
 </body>
