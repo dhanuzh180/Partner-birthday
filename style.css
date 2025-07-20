@@ -1,145 +1,81 @@
-/* Global reset and fonts */
+/* Reset default browser styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
+/* Set the entire page background */
 body {
   font-family: 'Poppins', sans-serif;
-  color: white;
+  background: url('countdown-bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow-x: hidden;
-}
-
-/* Countdown Page Styling */
-.countdown-container {
-  height: 100vh;
+  color: white;
+  text-align: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  text-align: center;
-  padding: 20px;
 }
 
-.countdown-container img {
-  max-width: 250px;
+/* Container for the entire countdown card */
+.container {
+  background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+  padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px #ff5f9e;
+  max-width: 90%;
+  width: 400px;
+}
+
+/* Partner Image */
+.container img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 10px pink;
   margin-bottom: 20px;
 }
 
+/* Countdown timer text */
 #countdown {
-  font-size: 1.7rem;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-#waiting-text {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.btn-love {
-  background: crimson;
-  color: white;
-  padding: 12px 25px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffb6c1;
+}
+
+/* Birthday message */
+#birthday-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Waiting text / subtext */
+#waiting-text {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #ffc0cb;
+}
+
+/* Love Button Styling */
+.btn-love {
+  background-color: red;
+  color: white;
+  padding: 12px 20px;
   border: none;
   border-radius: 30px;
-  box-shadow: 0 0 15px skyblue;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 0 15px #ff5f9e;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-love:hover {
-  transform: scale(1.05);
-}
-
-/* Promises Page Styling */
-.promise-section {
-  padding: 60px 20px 100px 20px;
-  background-image: url('promise-bg.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  min-height: 100vh;
-}
-
-.promise-header {
-  text-align: center;
-  margin-bottom: 40px;
-  color: white;
-}
-
-.promise-header img {
-  width: 180px;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-}
-
-.promise-title {
-  font-size: 2rem;
-  margin-top: 20px;
-  font-weight: bold;
-  color: #ffb3ec;
-  text-shadow: 2px 2px 8px black;
-}
-
-.promise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.promise {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 15px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease, background 0.3s ease;
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.promise.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#final-message {
-  text-align: center;
-  margin-top: 80px;
-  font-size: 3rem;
-  font-weight: bold;
-  color: #ffffff;
-  opacity: 0;
-  transition: opacity 2s ease;
-  font-family: 'Dancing Script', cursive;
-}
-
-/* Responsive Improvements */
-@media screen and (max-width: 768px) {
-  .promise-title {
-    font-size: 1.5rem;
-  }
-
-  .promise {
-    font-size: 1rem;
-  }
-
-  #final-message {
-    font-size: 2rem;
-  }
+  background-color: #ff5f9e;
+  box-shadow: 0 0 25px #ff5f9e;
 }
