@@ -94,3 +94,26 @@
 
 </body>
 </html>
+<script>
+  const birthday = new Date("September 5, 2025 00:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const gap = birthday - now;
+
+    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+    const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+    if (gap > 0) {
+      document.getElementById("countdown").innerHTML =
+        `🤍🥺 ${d}d ${h}h ${m}m ${s}s left 😚💋`;
+    } else {
+      // After Sep 5 → redirect to password page
+      window.location.href = "password.html";
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
