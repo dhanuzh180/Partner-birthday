@@ -1,48 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Unlock Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enter Password</title>
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: 'Lemon', sans-serif;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
-      text-align: center;
+      flex-direction: column;
     }
-    input, button {
-      margin-top: 20px;
+    input {
       padding: 10px;
       font-size: 1rem;
-      border-radius: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
       border: none;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff4d4d;
+    }
+    #error {
+      margin-top: 10px;
+      color: #ff8080;
     }
   </style>
 </head>
 <body>
-  <h2>💖 It's Time! Enter the Secret Code 💖</h2>
-  <input type="password" id="pass" placeholder="Enter password" />
-  <button onclick="unlock()">Unlock</button>
+  <h2>Enter Password 💖</h2>
+  <input type="password" id="password" placeholder="Type the magic words..." />
+  <button onclick="checkPassword()">Unlock</button>
+  <div id="error"></div>
 
   <script>
-    const birthday = new Date("September 5, 2025 00:00:00").getTime();
-    if (new Date().getTime() < birthday) {
-      alert("🔒 Unlocks only after 12:00 AM on September 5!");
-      window.location.href = "index.html";
+    function checkPassword() {
+      const pwd = document.getElementById("password").value;
+      if (pwd === "I lv u partner") {
+        window.location.href = "joshna.html";
+      } else {
+        document.getElementById("error").innerText = "Incorrect password. Try again 💔";
+      }
     }
 
-    function unlock() {
-      const pass = document.getElementById('pass').value.trim();
-      if (pass === "I lv u partner") {
-        window.location.href = "final.html";
-      } else {
-        alert("❌ Wrong password!");
-      }
+    const currentDate = new Date();
+    const unlockDate = new Date("September 5, 2025 00:00:00");
+
+    if (currentDate < unlockDate) {
+      document.body.innerHTML = "<h2 style='color:white;'>Wait until 💖 Sep 5 💖</h2>";
     }
   </script>
 </body>
