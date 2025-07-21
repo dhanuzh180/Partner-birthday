@@ -2,46 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Partner Birthday Countdown</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lemon&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
-      background: url('countdown-bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
+      background: black;
       color: white;
-      height: 100vh;
+      font-family: 'Lemon', cursive;
+      text-align: center;
       overflow: hidden;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
     }
 
     .container {
       position: relative;
       top: 20vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 25px;
-      border-radius: 20px;
-      display: inline-block;
+      z-index: 1;
     }
 
     img {
       max-width: 80%;
-      border-radius: 15px;
       margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
 
     #countdown {
-      font-size: 1.7rem;
-      margin: 15px 0;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 10px 0;
     }
 
     #waiting-text {
@@ -50,33 +52,39 @@
     }
 
     .btn-love {
-      background: crimson;
+      background-color: red;
       color: white;
-      padding: 12px 25px;
-      font-size: 1rem;
       font-weight: bold;
-      border: none;
+      padding: 12px 20px;
       border-radius: 30px;
+      border: none;
       box-shadow: 0 0 15px skyblue;
+      font-size: 1rem;
       cursor: pointer;
-      transition: transform 0.3s ease;
     }
 
     .btn-love:hover {
-      transform: scale(1.05);
+      background-color: #ff4d4d;
     }
   </style>
 </head>
 <body>
+
+  <!-- ✅ Background Video -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="waiting-bg.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- ✅ Countdown Section -->
   <div class="container">
     <img src="partner-title.png" alt="Joshna" />
     <div id="countdown">Loading...</div>
-    <div id="waiting-text">💖 Countdown to your special day, Partner 💖</div>
-    <button class="btn-love" onclick="window.location.href='final.html'">
-      💌 CLICK TO OPEN MY HEART AND LOVE 💌
-    </button>
+    <div id="waiting-text">காத்திருக்கிறேன்...!!</div>
+    <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
+  <!-- ✅ Script -->
   <script>
     const birthday = new Date("September 5, 2025 00:00:00").getTime();
 
@@ -91,11 +99,12 @@
 
       document.getElementById("countdown").innerHTML =
         gap > 0
-          ? `🎉 ${d}d ${h}h ${m}m ${s}s left 🎂❤️ <br/> Happy Birthday Joshna 🎊`
-          : "🎉 Happy Birthday My Love 💖";
+        ? `🤍🥺 ${d}d ${h}h ${m}m ${s}s left 😚💋`
+        : "🎉 Happy Birthday Joshna 🎉";
     }
 
     setInterval(updateCountdown, 1000);
   </script>
+
 </body>
 </html>
