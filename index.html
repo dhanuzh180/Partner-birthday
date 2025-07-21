@@ -11,14 +11,22 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
-      background: url('countdown-bg.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: black;
       color: white;
       font-family: 'Lemon', cursive;
       text-align: center;
       overflow: hidden;
+    }
+
+    #bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
     }
 
     .container {
@@ -27,20 +35,20 @@
       z-index: 1;
     }
 
-    img {
+    img.title {
       max-width: 80%;
       margin-bottom: 20px;
     }
 
     #countdown {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
       margin: 10px 0;
     }
 
     #waiting-text {
       font-size: 1.2rem;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .btn-love {
@@ -62,11 +70,33 @@
 </head>
 <body>
 
+  <!-- ✅ Static Background Image -->
+  <img src="countdown-bg.jpg" alt="Background" id="bg-image">
+
+  <!-- ✅ Early Access Script -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const accessCode = urlParams.get("access");
+
+    const today = new Date();
+    const sep5 = new Date("September 5, 2025 00:00:00");
+
+    if (today < sep5 && accessCode !== "dhanush") {
+      // Stay here on countdown page
+    } else if (today >= sep5) {
+      // Redirect to password page after Sep 5
+      window.location.href = "unlock.html";
+    } else if (accessCode === "dhanush") {
+      // Early access if code is correct
+      window.location.href = "unlock.html";
+    }
+  </script>
+
   <!-- ✅ Countdown Section -->
   <div class="container">
-    <img src="partner-title.png" alt="Joshna" />
+    <img src="partner-title.png" alt="Joshna" class="title" />
     <div id="countdown">Loading...</div>
-    <div id="waiting-text">காத்திருக்கிறேன்...!!🥹💗</div>
+    <div id="waiting-text">காத்திருக்கிறேன்...!!</div>
     <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
@@ -94,26 +124,3 @@
 
 </body>
 </html>
-<script>
-  const birthday = new Date("September 5, 2025 00:00:00").getTime();
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const gap = birthday - now;
-
-    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-    const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((gap % (1000 * 60)) / 1000);
-
-    if (gap > 0) {
-      document.getElementById("countdown").innerHTML =
-        `🤍🥺 ${d}d ${h}h ${m}m ${s}s left 😚💋`;
-    } else {
-      // After Sep 5 → redirect to password page
-      window.location.href = "password.html";
-    }
-  }
-
-  setInterval(updateCountdown, 1000);
-</script>
