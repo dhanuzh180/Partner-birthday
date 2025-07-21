@@ -11,22 +11,14 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      background: black;
+      background: url('countdown-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       font-family: 'Lemon', cursive;
       text-align: center;
       overflow: hidden;
-    }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
     }
 
     .container {
@@ -70,12 +62,6 @@
 </head>
 <body>
 
-  <!-- ✅ Background Video -->
-  <video autoplay muted loop id="bg-video" playsinline>
-    <source src="waiting-bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
   <!-- ✅ Countdown Section -->
   <div class="container">
     <img src="partner-title.png" alt="Joshna" />
@@ -84,7 +70,7 @@
     <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
-  <!-- ✅ Script -->
+  <!-- ✅ Countdown Script -->
   <script>
     const birthday = new Date("September 5, 2025 00:00:00").getTime();
 
