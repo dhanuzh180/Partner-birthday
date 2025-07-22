@@ -2,66 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enter Password</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Partner</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
-    input {
-      padding: 10px;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: none;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: red;
+      background-color: black;
+      margin: 0;
       color: white;
-      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    img {
+      max-width: 300px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px black;
+    }
+
+    button {
+      background: crimson;
+      color: white;
+      font-size: 1rem;
+      padding: 12px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
+      box-shadow: 0 0 15px black;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #ff4d4d;
-    }
-    #error {
-      margin-top: 10px;
-      color: #ff8080;
+      background: darkred;
     }
   </style>
 </head>
 <body>
-  <h2>Enter Password 💖</h2>
-  <input type="password" id="password" placeholder="Type the magic words..." />
-  <button onclick="checkPassword()">Unlock</button>
-  <div id="error"></div>
-
-  <script>
-    function checkPassword() {
-      const pwd = document.getElementById("password").value;
-      if (pwd === "I lv u partner") {
-        window.location.href = "joshna.html";
-      } else {
-        document.getElementById("error").innerText = "Incorrect password. Try again 💔";
-      }
-    }
-
-    const currentDate = new Date();
-    const unlockDate = new Date("September 5, 2025 00:00:00");
-
-    if (currentDate < unlockDate) {
-      document.body.innerHTML = "<h2 style='color:white;'>Wait until 💖 Sep 5 💖</h2>";
-    }
-  </script>
+  <img src="joshna.jpg" alt="Joshna - My Love" />
+  <button onclick="window.location.href='final.html'">Click Here 💌</button>
 </body>
 </html>
