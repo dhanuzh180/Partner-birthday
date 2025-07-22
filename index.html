@@ -11,12 +11,13 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       background: black;
-      color: white;
       font-family: 'Lemon', cursive;
       text-align: center;
       overflow: hidden;
+      color: white;
     }
 
     #bg-image {
@@ -31,24 +32,35 @@
 
     .container {
       position: relative;
-      top: 20vh;
+      top: 10vh;
       z-index: 1;
+      padding: 0 10px;
+    }
+
+    .title-line {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 2px 2px 10px #ff69b4, 0 0 15px #fff;
     }
 
     img.title {
       max-width: 80%;
       margin-bottom: 20px;
+      filter: drop-shadow(0 0 8px white);
     }
 
     #countdown {
       font-size: 1.6rem;
       font-weight: bold;
       margin: 10px 0;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
     }
 
     #waiting-text {
       font-size: 1.2rem;
       margin-bottom: 25px;
+      text-shadow: 0 0 10px #f0f, 0 0 20px #ff0080;
     }
 
     .btn-love {
@@ -61,6 +73,7 @@
       box-shadow: 0 0 15px skyblue;
       font-size: 1rem;
       cursor: pointer;
+      text-shadow: 0 0 5px white;
     }
 
     .btn-love:hover {
@@ -70,37 +83,31 @@
 </head>
 <body>
 
-  <!-- ✅ Static Background Image -->
+  <!-- Background Image -->
   <img src="countdown-bg.jpg" alt="Background" id="bg-image">
 
-  <!-- ✅ Early Access Script -->
+  <!-- Early Access Logic -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const accessCode = urlParams.get("access");
-
     const today = new Date();
     const sep5 = new Date("September 5, 2025 00:00:00");
 
-    if (today < sep5 && accessCode !== "dhanush") {
-      // Stay here on countdown page
-    } else if (today >= sep5) {
-      // Redirect to password page after Sep 5
-      window.location.href = "unlock.html";
-    } else if (accessCode === "dhanush") {
-      // Early access if code is correct
+    if (today >= sep5 && accessCode !== "dhanush") {
       window.location.href = "unlock.html";
     }
   </script>
 
-  <!-- ✅ Countdown Section -->
+  <!-- Countdown Content -->
   <div class="container">
+    <div class="title-line">Advance Happiest Birthday mah partner..!!🫂😚♥️</div>
     <img src="partner-title.png" alt="Joshna" class="title" />
     <div id="countdown">Loading...</div>
-    <div id="waiting-text">காத்திருக்கிறேன்...!!🥹💗</div>
+    <div id="waiting-text">காத்திருக்கிறேன்...!!</div>
     <button class="btn-love">💌 CLICK TO OPEN MY HEART AND LOVE 💌</button>
   </div>
 
-  <!-- ✅ Countdown Script -->
+  <!-- Countdown Timer Script -->
   <script>
     const birthday = new Date("September 5, 2025 00:00:00").getTime();
 
