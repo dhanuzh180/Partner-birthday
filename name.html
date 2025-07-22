@@ -1,42 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Enter Your Name</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome Partner ❤️</title>
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: 'Lemon', sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background: linear-gradient(to right, #ffccd5, #ffe6e6);
+      color: #333;
       text-align: center;
     }
-    input, button {
-      font-size: 1rem;
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 0, 102, 0.2);
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #e60073;
+    }
+    input[type="text"] {
       padding: 10px;
-      margin-top: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
       border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px 25px;
+      font-size: 1rem;
+      background-color: #ff3366;
+      color: white;
       border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 0, 102, 0.3);
+    }
+    button:hover {
+      background-color: #e6005c;
     }
   </style>
 </head>
 <body>
-  <h2>💌 Hey! What’s your name?</h2>
-  <input type="text" id="username" placeholder="Enter your name" required>
-  <button onclick="submitName()">Continue</button>
+  <div class="box">
+    <h2>Hey there! 🥰<br>What's your name?</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name..." />
+    <br>
+    <button onclick="submitName()">Continue</button>
+  </div>
 
   <script>
     function submitName() {
-      const name = document.getElementById('username').value;
-      if (!name) return alert('Please enter your name!');
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) {
+        alert('Please enter your name 😊');
+        return;
+      }
 
-      const url = `https://docs.google.com/forms/d/e/1FAIpQLSeOBoR7qSFW9JdvsT0TEksepd0h5HXN9oImd0XFiBTqfP1ATA/formResponse?entry.66588096=${encodeURIComponent(name)}`;
-      fetch(url, { method: "POST", mode: "no-cors" });
+      // OPTIONAL: Google Form submit (replace this with your real form URL)
+      const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSeOBoR7qSFW9JdvsT0TEksepd0h5HXN9oImd0XFiBTqfP1ATA/formResponse";
+      const nameEntry = "entry.66588096"; // Your input field's entry ID from Google Form
 
+      fetch(`${formURL}?${nameEntry}=${encodeURIComponent(name)}`, {
+        method: "GET",
+        mode: "no-cors"
+      });
+
+      // Redirect to countdown page
       window.location.href = "index.html";
     }
   </script>
