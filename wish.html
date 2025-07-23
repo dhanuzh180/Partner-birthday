@@ -16,41 +16,39 @@
     }
 
     .overlay {
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0, 0, 0, 0.4);
       min-height: 100vh;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
-      padding: 30px 15px;
     }
 
     h1 {
       font-size: 2.2rem;
-      margin-top: 60px;
-      text-shadow: 2px 2px 5px black;
+      margin-top: 40px;
+      text-shadow: 2px 2px 6px black;
     }
 
     #short-msg {
       font-size: 1.1rem;
       margin-top: 10px;
       max-width: 700px;
-      text-shadow: 1px 1px 3px black;
       white-space: pre-wrap;
       border-right: 2px solid white;
       overflow: hidden;
       width: 0;
+      text-shadow: 1px 1px 3px black;
       animation: typing 5s steps(80, end) forwards, blink 0.8s infinite;
     }
 
-    #long-msg {
+    #paragraph {
       font-size: 1rem;
       line-height: 1.6;
+      margin-top: 40px;
       max-width: 800px;
-      margin: 40px auto 20px;
-      text-shadow: 1px 1px 3px black;
       display: none;
-      white-space: pre-wrap;
+      text-shadow: 1px 1px 3px black;
     }
 
     .gift-btn {
@@ -84,51 +82,35 @@
 
   <div class="overlay">
     <h1>HAPPIEST BIRTHDAY MY CHELLA PONDATTII..!!😌🫂💋💌</h1>
-    
+
     <div id="short-msg">
       You don't need a special day to remind me how important you are in my life. You are blessing my life every day and you deserve to be loved every day! Happy birthday!🌙🤍🥹
     </div>
 
-    <div id="long-msg"></div>
+    <div id="paragraph"></div>
 
     <button class="gift-btn" onclick="location.href='joshna.html'">Small Gift 🎁</button>
   </div>
 
   <script>
-    const fullMessage = [
-      "From the moment we met, my world became magical 💫❤️",
-      "You’re not just my love, you’re my everything 🌍💖",
-      "I will always choose you, no matter what 💘👩‍❤️‍👨",
-      "Thank you for being the reason behind my smile 😊🌈",
-      "I feel lucky every day just to call you mine 🍀💑",
-      "Happy Birthday, my sweet baby 💝🎂",
-      "My heart beats for you and only you 🫀🔐",
-      "You make even the dullest days beautiful ☀️💕",
-      "Your love is my biggest gift 🎁💗",
-      "Love you more than words can ever say 😘📖"
-    ];
+    const fullWish = `My dearest love, on this special day, I want you to know how much you mean to me 🥹💖. Your presence in my life is a blessing I’ll never stop cherishing 🌈✨. I fall in love with you more every single day 😚🌹. Your smile lights up my world like sunshine after a storm ☀️🌧️. You’re not just my partner; you’re my best friend, my safe space, and my forever home 🏡🤗. I promise to stand by you in every season of life 🌸🍁. Thank you for your endless love, your warm hugs, and your loyal heart 🫂❤️. You’re the dream I never knew I had 💭💞. Happy Birthday, my love – my one and only. I’m beyond lucky to have you 🫶🎁. Forever yours. 💍🌍`;
 
-    function showLongMessage() {
-      const container = document.getElementById("long-msg");
-      let index = 0;
+    function showParagraph() {
+      const container = document.getElementById("paragraph");
       container.style.display = "block";
-
-      function typeLine() {
-        if (index < fullMessage.length) {
-          const line = document.createElement("p");
-          line.textContent = fullMessage[index];
-          container.appendChild(line);
-          index++;
-          setTimeout(typeLine, 1600);
+      let i = 0;
+      function typeChar() {
+        if (i < fullWish.length) {
+          container.innerHTML += fullWish.charAt(i);
+          i++;
+          setTimeout(typeChar, 30);
         }
       }
-
-      setTimeout(typeLine, 1500);
+      typeChar();
     }
 
-    // Trigger message typing after short-msg types
-    window.onload = function() {
-      setTimeout(showLongMessage, 6000);
+    window.onload = function () {
+      setTimeout(showParagraph, 6000);
     };
   </script>
 
