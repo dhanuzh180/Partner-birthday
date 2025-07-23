@@ -9,7 +9,6 @@
       margin: 0;
       padding: 0;
       background: url('wish.jpg') no-repeat center center/cover;
-      filter: grayscale(100%);
       font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
@@ -44,19 +43,11 @@
       animation: typing 5s steps(80, end) forwards, blink 0.8s infinite;
     }
 
-    #sita-img {
-      margin: 40px 0 20px;
-      max-width: 100%;
-      height: auto;
-      filter: none;
-      box-shadow: 0 0 20px black;
-    }
-
     #long-msg {
       font-size: 1rem;
       line-height: 1.6;
       max-width: 800px;
-      margin: 20px auto;
+      margin: 40px auto 20px;
       text-shadow: 1px 1px 3px black;
       display: none;
       white-space: pre-wrap;
@@ -98,8 +89,6 @@
       You don't need a special day to remind me how important you are in my life. You are blessing my life every day and you deserve to be loved every day! Happy birthday!🌙🤍🥹
     </div>
 
-    <img id="sita-img" src="sita.jpg" alt="Sita" onload="showLongMessage()" />
-
     <div id="long-msg"></div>
 
     <button class="gift-btn" onclick="location.href='joshna.html'">Small Gift 🎁</button>
@@ -107,16 +96,16 @@
 
   <script>
     const fullMessage = [
-      "From the moment we met, my world has become brighter 💫❤️",
-      "You are the sweetest piece of my heart 🍬💕",
-      "I promise to always hold your hand through every storm 🌧️🤝",
-      "Waking up each day knowing you're mine is a blessing 🌞💘",
-      "No words can describe how much I adore you 😍💗",
-      "Happy Birthday, my baby girl 💖🎂",
-      "This heart beats only for you forever 🫀🔒",
-      "You’re not just my lover, you are my best friend too 🎧👫",
-      "May this birthday bring you as much joy as you bring me 🎁💃",
-      "Love you endlessly, pondattii 😘💍"
+      "From the moment we met, my world became magical 💫❤️",
+      "You’re not just my love, you’re my everything 🌍💖",
+      "I will always choose you, no matter what 💘👩‍❤️‍👨",
+      "Thank you for being the reason behind my smile 😊🌈",
+      "I feel lucky every day just to call you mine 🍀💑",
+      "Happy Birthday, my sweet baby 💝🎂",
+      "My heart beats for you and only you 🫀🔐",
+      "You make even the dullest days beautiful ☀️💕",
+      "Your love is my biggest gift 🎁💗",
+      "Love you more than words can ever say 😘📖"
     ];
 
     function showLongMessage() {
@@ -130,12 +119,17 @@
           line.textContent = fullMessage[index];
           container.appendChild(line);
           index++;
-          setTimeout(typeLine, 1500);
+          setTimeout(typeLine, 1600);
         }
       }
 
-      setTimeout(typeLine, 1000);
+      setTimeout(typeLine, 1500);
     }
+
+    // Trigger message typing after short-msg types
+    window.onload = function() {
+      setTimeout(showLongMessage, 6000);
+    };
   </script>
 
 </body>
