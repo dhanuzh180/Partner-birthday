@@ -2,82 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birthday Wish</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       background: url('wish.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Poppins', sans-serif;
+      filter: grayscale(100%);
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
       text-align: center;
-      text-shadow: 2px 2px 5px black;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
     }
 
     h1 {
       font-size: 2.2rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      padding: 0 20px;
-    }
-
-    #typing {
-      font-size: 1rem;
-      max-width: 90%;
-      padding: 0 20px;
-      min-height: 80px;
-    }
-
-    .btn-gift {
       margin-top: 40px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      background-color: #ff5e8e;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      box-shadow: 0 0 15px black;
-      cursor: pointer;
-      transition: 0.3s ease;
+      text-shadow: 2px 2px 5px black;
     }
 
-    .btn-gift:hover {
-      background-color: crimson;
+    .typing-text {
+      font-size: 1rem;
+      margin-top: 20px;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 3px black;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      animation: typing 5s steps(100, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: white }
+    }
+
+    .sita-img {
+      width: 200px;
+      height: auto;
+      border-radius: 15px;
+      margin: 30px auto 20px;
+      box-shadow: 3px 3px 10px black;
+    }
+
+    .wish-paragraph {
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: 20px;
+      text-shadow: 1px 1px 3px black;
     }
   </style>
 </head>
 <body>
-
-  <h1>HAPPIEST BIRTHDAY MY CHELLA PONDATTII..!!😌🫂💋💌</h1>
-
-  <div id="typing"></div>
-
-  <button class="btn-gift" onclick="window.location.href='unlock.html'">Small Gift 🎁</button>
-
-  <script>
-    const text = "You don't need a special day to remind me how important you are in my life. You are blessing my life every day and you deserve to be loved every day! Happy birthday!🌙🤍🥹";
-    const typingElement = document.getElementById('typing');
-    let i = 0;
-
-    function typeWriter() {
-      if (i < text.length) {
-        typingElement.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50); // Typing speed
-      }
-    }
-
-    window.onload = typeWriter;
-  </script>
-
+  <div class="overlay">
+    <h1>HAPPIEST BIRTHDAY MY CHELLA PONDATTII..!!😌🫂💋💌</h1>
+    <div class="typing-text">
+      You don't need a special day to remind me how important you are in my life. You are blessing my life every day and you deserve to be loved every day! Happy birthday!🌙🤍🥹
+    </div>
+    <img src="sita.jpg" alt="Sita" class="sita-img" />
+    <div class="wish-paragraph">
+      Every second with you is a moment I cherish deeply 🫂💖.<br>
+      You are not just my love, you're my peace, my strength, and my happiness 💌🌸.<br>
+      On your birthday, I want you to know how precious you are to me 🥹❤️.<br>
+      Your smile brightens my darkest days like sunshine ☀️😚.<br>
+      No words can explain the love I have for you, but I’ll show it every day 💑🔥.<br>
+      I promise to hold your hand in every high and low of life ✋💞.<br>
+      You’re my one and only, my forever person 😍👩‍❤️‍👨.<br>
+      I’m grateful to destiny for bringing you into my life 🙏💫.<br>
+      Happy Birthday to the sweetest soul I’ve ever known 🎂🤍.<br>
+      I love you endlessly and promise to keep you smiling always 💖😌.
+    </div>
+  </div>
 </body>
 </html>
