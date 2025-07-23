@@ -2,45 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Birthday Wish</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('wish.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: url('wish.jpg') no-repeat center center/cover;
       filter: grayscale(100%);
+      font-family: 'Segoe UI', sans-serif;
       color: white;
-      font-family: Arial, sans-serif;
       text-align: center;
       overflow-x: hidden;
     }
 
     .overlay {
-      background: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0,0,0,0.4);
       min-height: 100vh;
-      padding: 40px 20px;
-      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px 15px;
     }
 
     h1 {
       font-size: 2.2rem;
-      margin-top: 40px;
+      margin-top: 60px;
       text-shadow: 2px 2px 5px black;
     }
 
-    .typing-text {
-      font-size: 1rem;
-      margin-top: 20px;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
+    #short-msg {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      max-width: 700px;
       text-shadow: 1px 1px 3px black;
-      white-space: nowrap;
-      overflow: hidden;
+      white-space: pre-wrap;
       border-right: 2px solid white;
-      animation: typing 5s steps(100, end), blink 0.75s step-end infinite;
+      overflow: hidden;
+      width: 0;
+      animation: typing 5s steps(80, end) forwards, blink 0.8s infinite;
+    }
+
+    #sita-img {
+      margin: 40px 0 20px;
+      max-width: 100%;
+      height: auto;
+      filter: none;
+      box-shadow: 0 0 20px black;
+    }
+
+    #long-msg {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 20px auto;
+      text-shadow: 1px 1px 3px black;
+      display: none;
+      white-space: pre-wrap;
+    }
+
+    .gift-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff4d4d;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px black;
+    }
+
+    .gift-btn:hover {
+      background-color: #ff6666;
     }
 
     @keyframes typing {
@@ -49,47 +84,59 @@
     }
 
     @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: white }
-    }
-
-    .sita-img {
-      width: 200px;
-      height: auto;
-      border-radius: 15px;
-      margin: 30px auto 20px;
-      box-shadow: 3px 3px 10px black;
-    }
-
-    .wish-paragraph {
-      font-size: 1rem;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto;
-      margin-top: 20px;
-      text-shadow: 1px 1px 3px black;
+      0%, 100% { border-color: transparent; }
+      50% { border-color: white; }
     }
   </style>
 </head>
 <body>
+
   <div class="overlay">
     <h1>HAPPIEST BIRTHDAY MY CHELLA PONDATTII..!!😌🫂💋💌</h1>
-    <div class="typing-text">
+    
+    <div id="short-msg">
       You don't need a special day to remind me how important you are in my life. You are blessing my life every day and you deserve to be loved every day! Happy birthday!🌙🤍🥹
     </div>
-    <img src="sita.jpg" alt="Sita" class="sita-img" />
-    <div class="wish-paragraph">
-      Every second with you is a moment I cherish deeply 🫂💖.<br>
-      You are not just my love, you're my peace, my strength, and my happiness 💌🌸.<br>
-      On your birthday, I want you to know how precious you are to me 🥹❤️.<br>
-      Your smile brightens my darkest days like sunshine ☀️😚.<br>
-      No words can explain the love I have for you, but I’ll show it every day 💑🔥.<br>
-      I promise to hold your hand in every high and low of life ✋💞.<br>
-      You’re my one and only, my forever person 😍👩‍❤️‍👨.<br>
-      I’m grateful to destiny for bringing you into my life 🙏💫.<br>
-      Happy Birthday to the sweetest soul I’ve ever known 🎂🤍.<br>
-      I love you endlessly and promise to keep you smiling always 💖😌.
-    </div>
+
+    <img id="sita-img" src="sita.jpg" alt="Sita" onload="showLongMessage()" />
+
+    <div id="long-msg"></div>
+
+    <button class="gift-btn" onclick="location.href='joshna.html'">Small Gift 🎁</button>
   </div>
+
+  <script>
+    const fullMessage = [
+      "From the moment we met, my world has become brighter 💫❤️",
+      "You are the sweetest piece of my heart 🍬💕",
+      "I promise to always hold your hand through every storm 🌧️🤝",
+      "Waking up each day knowing you're mine is a blessing 🌞💘",
+      "No words can describe how much I adore you 😍💗",
+      "Happy Birthday, my baby girl 💖🎂",
+      "This heart beats only for you forever 🫀🔒",
+      "You’re not just my lover, you are my best friend too 🎧👫",
+      "May this birthday bring you as much joy as you bring me 🎁💃",
+      "Love you endlessly, pondattii 😘💍"
+    ];
+
+    function showLongMessage() {
+      const container = document.getElementById("long-msg");
+      let index = 0;
+      container.style.display = "block";
+
+      function typeLine() {
+        if (index < fullMessage.length) {
+          const line = document.createElement("p");
+          line.textContent = fullMessage[index];
+          container.appendChild(line);
+          index++;
+          setTimeout(typeLine, 1500);
+        }
+      }
+
+      setTimeout(typeLine, 1000);
+    }
+  </script>
+
 </body>
 </html>
