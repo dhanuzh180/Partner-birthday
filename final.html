@@ -178,3 +178,17 @@
     window.onload = showNextPromise;
   </script></body>
 </html>
+<audio id="bg-music" autoplay loop>
+  <source src="webaudio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const music = document.getElementById('bg-music');
+  window.addEventListener('load', () => {
+    music.volume = 0.4; // Optional volume setting
+    music.play().catch(() => {
+      console.log("Autoplay blocked until user interacts.");
+    });
+  });
+</script>
