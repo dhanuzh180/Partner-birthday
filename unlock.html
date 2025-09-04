@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Partner</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Protected</title>
   <style>
     body {
-      background-color: black;
-      margin: 0;
+      background: black;
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      margin: 0;
       text-align: center;
     }
-
-    img {
-      max-width: 300px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px black;
+    input {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
     }
-
     button {
-      background: crimson;
+      padding: 10px 20px;
+      background: red;
+      border: none;
+      border-radius: 5px;
       color: white;
       font-size: 1rem;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      box-shadow: 0 0 15px black;
       cursor: pointer;
     }
-
     button:hover {
       background: darkred;
+    }
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <img src="joshna.jpg" alt="Joshna - My Love" />
-  <button onclick="window.location.href='final.html'">Click Here 💌</button>
+  <h1>🔒 Enter Password</h1>
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Unlock</button>
+  <p class="error" id="errorMsg"></p>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      const correctPassword = "I lv u partner";
+
+      if (input === correctPassword) {
+        window.location.href = "wish.html"; // ✅ Goes to wish page
+      } else {
+        document.getElementById("errorMsg").textContent = "❌ Wrong password, try again!";
+      }
+    }
+  </script>
 </body>
 </html>
